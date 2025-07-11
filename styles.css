@@ -9,18 +9,23 @@ h1 {
   color: #72e0ff;
 }
 
-.controls, .add-process {
+.controls,
+.add-process {
   margin-bottom: 20px;
   background: #36393f;
   padding: 15px;
   border-radius: 10px;
 }
 
-label, input, select, button {
+label,
+input,
+select,
+button {
   margin: 5px;
 }
 
-input, select {
+input,
+select {
   background: #202225;
   color: white;
   padding: 5px;
@@ -48,7 +53,8 @@ table {
   background: #202225;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #444;
   padding: 10px;
   text-align: center;
@@ -59,8 +65,35 @@ th, td {
   background: #36393f;
   padding: 15px;
   border-radius: 10px;
+  overflow-x: auto;
 }
 
-#resultsContainer {
-  margin-top: 20px;
+.gantt-block {
+  background-color: #7289da;
+  color: white;
+  margin: 2px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 6px;
+  transition: transform 0.2s ease;
 }
+
+.gantt-block:hover {
+  transform: scale(1.05);
+}
+
+@keyframes flash {
+  0% {
+    background-color: #00ffcc;
+  }
+  50% {
+    background-color: #7289da;
+  }
+  100% {
+    background-color: #7289da;
+  }
+}
+
+.gantt-block.flash {
+  animation: flash 0.4s ease-in-out;
+} 
