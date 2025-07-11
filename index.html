@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OS Algorithms Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+  <h1>OS Algorithms Simulator</h1>
+
+  <!-- Algorithm selection and controls -->
+  <div class="controls">
+    <label for="algorithmSelect">Algorithm:</label>
+    <select id="algorithmSelect">
+      <option value="fcfs">FCFS</option>
+      <option value="sjf">SJF (Non-Preemptive)</option>
+      <option value="srtf">SRTF (Preemptive SJF)</option>
+      <option value="rr">Round Robin</option>
+      <option value="priority">Priority Scheduling</option>
+    </select>
+
+    <div id="extraInputs">
+      <label id="quantumLabel" style="display:none;">
+        Time Quantum: <input type="number" id="quantumInput" min="1" />
+      </label>
+
+      <label id="priorityLabel" style="display:none;">
+        <input type="checkbox" id="preemptiveCheckbox" />
+        Preemptive Priority
+      </label>
+    </div>
+
+    <button onclick="simulate()">Simulate</button>
+    <button onclick="resetAll()">Reset</button>
+    <button onclick="exportToPNG()">Export to PNG</button>
+  </div>
+
+  <!-- Add process form -->
+  <div class="add-process">
+    <h2>Add Process</h2>
+    <label>Arrival Time: <input type="number" id="arrival" min="0" /></label>
+    <label>Burst Time: <input type="number" id="burst" min="1" /></label>
+    <label>Priority (lower = higher): <input type="number" id="priority" /></label>
+    <button onclick="addProcess()">Add Process</button>
+  </div>
+
+  <!-- Process table -->
+  <h2>Processes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>PID</th>
+        <th>Arrival</th>
+        <th>Burst</th>
+        <th>Priority</th>
+      </tr>
+    </thead>
+    <tbody id="processTableBody"></tbody>
+  </table>
+
+  <!-- Output -->
+  <div id="ganttChart"></div>
+  <div id="resultsContainer"></div>
+
+  <!-- Scripts -->
+  <script src="scripts/utils.js"></script>
+  <script src="scripts/algorithms.js"></script>
+  <script src="scripts/gantt.js"></script>
+  <script src="scripts/main.js"></script>
+
+</body>
+</html>
+
