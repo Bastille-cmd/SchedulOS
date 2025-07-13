@@ -1,11 +1,29 @@
 function renderGanttChart(timeline) {
-  const chart = document.getElementById('ganttChart');
-  chart.innerHTML = '';
+  const container = document.getElementById("ganttChart");
+  container.innerHTML = '<h2>Gantt Chart</h2>';
 
-  for (let block of timeline) {
-    const div = document.createElement('div');
-    div.className = 'gantt-block';
-    div.innerText = `P${block.pid}\n${block.start}–${block.end}`;
-    chart.appendChild(div);
-  }
+  const chart = document.createElement("div");
+  chart.style.display = "flex";
+
+  const seen = new Set();
+  let prev = null;
+
+  timeline.forEach(slot => {
+    const block = document.createElement("div");
+    block.className = "gantt-block";
+    block.style.flex = slot.end - slot.start;
+    block.textContent = `P${slot.pid}`;
+    block.title = `Start: ${slot.start}, End: ${slot.end}`;
+
+    if (!seen.has(slot.pid) || prev !== slot.pid) {
+      block.classList.add("flash");
+    }
+
+    seen.add(slot.pid);
+    prev = slot.pid;
+    chart.appendChild(block);
+  });
+
+  container.appendChild(chart);
 }
+
